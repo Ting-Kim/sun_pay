@@ -1,6 +1,7 @@
 package com.project.fintech.sunpay;
 
 
+import com.project.fintech.sunpay.model.Friend;
 import com.project.fintech.sunpay.model.User;
 import lombok.RequiredArgsConstructor;
 
@@ -27,21 +28,24 @@ public class InitDate {
 
         @Transactional
         public void init() {
-            User user1 = user("name1");
-            User user2 = user("name2");
-//            Friend friend = friend(user1, user2);
-
-
+            User user = user("name1");
+            for (int i = 2; i < 12; i++) {
+                User second = user("name" + i);
+                friend(user, second);
+            }
         }
 
-       /* private Friend friend(User user1, User user2) {
-            Friend friend = Friend.builder()
+        private void friend(User user1, User user2) {
+
+            em.persist(Friend.builder()
                     .to(user1)
                     .from(user2)
-                    .build();
-            em.persist(friend);
-            return friend;
-        }*/
+                    .build());
+            em.persist(Friend.builder()
+                    .to(user2)
+                    .from(user1)
+                    .build());
+        }
 
         private User user(String username) {
             User user = User.builder()

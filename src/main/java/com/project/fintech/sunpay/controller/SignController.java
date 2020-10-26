@@ -33,7 +33,6 @@ public class SignController {
     }
     @GetMapping("main")
     public String main(){
-
         return "main";
     }
 
