@@ -1,10 +1,13 @@
 package com.project.fintech.sunpay.model;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Entity @Getter
+@NoArgsConstructor
 public class Friend {
     @Id @GeneratedValue
     private Long id;

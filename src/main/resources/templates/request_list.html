@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>요청 목록</title>
+</head>
+<body>
+    <tr th:each="friend : ${friend_list}">
+        <a th:href="@{'/request/'+${friend.getFrom().getId()}}">
+            <td th:text="${friend.getFrom().getUsername()}"></td>
+        </a>
+        <br>
+    </tr>
+</body>
+</html>
