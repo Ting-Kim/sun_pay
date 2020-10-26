@@ -1,7 +1,6 @@
 package com.project.fintech.sunpay.model;
 
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +8,7 @@ import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
+@Data
 public class User {
     @Id @GeneratedValue
     private Long id;

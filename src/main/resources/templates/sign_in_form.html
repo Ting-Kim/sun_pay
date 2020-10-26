@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>로그인 화면</title>
 </head>
 <body>
-    <form action="sign_in" method="post">
-        <input name="username" type="text">
-        <input name="password" type="password">
-        <button type="submit">로그인</button>
-    </form>
+<form th:action="@{/sign_in}" th:object="${user}" method="post">
+    <input type="text" th:field="*{username}" name="username">
+    <input name="password" th:field="*{password}" type="password">
+    <button type="submit">로그인</button>
+</form>
 </body>
 </html>

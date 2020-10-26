@@ -4,7 +4,6 @@ package com.project.fintech.sunpay;
 import com.project.fintech.sunpay.model.User;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Component
-@Profile("local")
 @RequiredArgsConstructor
 public class InitDate {
     private final InitService initService;
@@ -29,15 +27,29 @@ public class InitDate {
 
         @Transactional
         public void init() {
-            user();
+            User user1 = user("name1");
+            User user2 = user("name2");
+//            Friend friend = friend(user1, user2);
+
+
         }
 
-        private void user() {
+       /* private Friend friend(User user1, User user2) {
+            Friend friend = Friend.builder()
+                    .to(user1)
+                    .from(user2)
+                    .build();
+            em.persist(friend);
+            return friend;
+        }*/
+
+        private User user(String username) {
             User user = User.builder()
-                    .username("username")
+                    .username(username)
                     .password("password")
                     .build();
             em.persist(user);
+            return user;
         }
     }
 }
