@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>요청 수정</title>
 </head>
 <body>
+<div>요청하는 사람
+    <tr>
+        <td th:text="${request.getTo().getUsername()}"></td>
+    </tr>
+</div>
+<br>
 
+<div>요청당하는 사람
+    <tr>
+        <td th:text="${request.getFrom().getUsername()}"></td>
+    </tr>
+</div>
+<br>
+<form th:action="@{/requested/update}" method="post">
+    <input type="hidden" name="request_id"  th:value="${request.getId()}">
+    <div>
+        <span>요청 수정</span>
+        <input type="text" name="price">
+        <button type="submit">요청</button>
+    </div>
+</form>
 </body>
 </html>

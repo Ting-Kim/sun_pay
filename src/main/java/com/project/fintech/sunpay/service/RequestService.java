@@ -15,4 +15,14 @@ public class RequestService {
         Request request = requestRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         request.setRequestState(RequestState.CANCEL);
     }
+
+    public void changeAmount(Long id, int amount) {
+        Request request = requestRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        request.setAmount(amount);
+    }
+
+    public void refuse(Long id) {
+        Request request = requestRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        request.setRequestState(RequestState.REFUSE);
+    }
 }

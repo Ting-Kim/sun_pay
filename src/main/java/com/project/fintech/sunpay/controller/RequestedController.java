@@ -39,8 +39,22 @@ public class RequestedController {
     }
 
     @GetMapping("requested/update")
-    public String requested_update(@RequestParam("request_id") Long id){
+    public String requested_update(@RequestParam("request_id") Long id, Model model
+    , HttpSession session){
+        User to = (User) session.getAttribute("user");
+        if (to == null)return "redirect:/sign_in";
+        Request request = requestRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        model.addAttribute("request", request);
         return "requested_update";
+    }
+
+    @PostMapping("requested/update")
+    public String post_requested_update(@RequestParam("request_id") Long id, @RequestParam("price") int price
+    ,HttpSession session){
+        User to = (User) session.getAttribute("user");
+        if (to == null)return "redirect:/sign_in";
+        requestService.changeAmount(id, price);
+        return "redirect:/requested";
     }
 
 }
