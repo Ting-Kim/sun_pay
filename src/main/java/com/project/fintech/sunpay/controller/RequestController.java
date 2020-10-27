@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class FriendController {
+public class RequestController {
     private final FriendRepository friendRepository;
     private final UserRepository userRepository;
     private final RequestRepository requestRepository;
@@ -42,6 +42,7 @@ public class FriendController {
         }else return "redirect:/request";
         return "request";
     }
+
     @PostMapping("request")
     public String post_request(@RequestParam("from") Long fromId,
                                @RequestParam("price") int price,
