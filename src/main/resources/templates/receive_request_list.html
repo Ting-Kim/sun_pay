@@ -10,12 +10,12 @@
     <tr>
         <td>요청한 사람</td>
         <td>요청한 금액</td>
-        <td>현재 상태 </td>
+        <td>상태</td>
     </tr>
     </thead>
     <tbody>
     <tr th:each="receive_request : ${receive_request_list}">
-        <td th:text="${receive_request.getFrom().getUsername()}"></td>
+        <td th:text="${receive_request.getTo().getUsername()}"></td>
         <td th:text="${receive_request.getAmount()}"></td>
         <td>승인(송금)</td>
         <td>거절</td>

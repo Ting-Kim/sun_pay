@@ -2,12 +2,14 @@ package com.project.fintech.sunpay.controller;
 
 import com.project.fintech.sunpay.model.Request;
 import com.project.fintech.sunpay.model.User;
-
 import com.project.fintech.sunpay.repository.RequestRepository;
+import com.project.fintech.sunpay.service.RequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RequestedController {
     private final RequestRepository requestRepository;
+    private final RequestService requestService;
 
     @GetMapping("requested")
     public String requested(HttpSession session, Model model){
@@ -24,6 +27,20 @@ public class RequestedController {
         List<Request> byTo = requestRepository.findByTo(to);
         model.addAttribute("request_list", byTo);
         return "requested_list";
+    }
+
+    @PostMapping("cancel")
+    public String cancel(@RequestParam("request_id") Long id, HttpSession session){
+        User to = (User) session.getAttribute("user");
+        if (to == null)return "redirect:/sign_in";
+        requestService.cancel(id);
+
+        return "redirect:/requested";
+    }
+
+    @GetMapping("requested/update")
+    public String requested_update(@RequestParam("request_id") Long id){
+        return "requested_update";
     }
 
 }

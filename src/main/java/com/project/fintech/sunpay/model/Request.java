@@ -3,11 +3,12 @@ package com.project.fintech.sunpay.model;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity @NoArgsConstructor
-@Getter
+@Getter @Setter
 public class Request {
     @Id @GeneratedValue
     private Long id;
@@ -21,6 +22,7 @@ public class Request {
     private User from;
 
     private int amount;
+    @Enumerated(EnumType.STRING)
     private RequestState requestState;
 
     @Builder

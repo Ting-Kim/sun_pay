@@ -10,13 +10,27 @@
     <tr>
         <td>요청한 사람</td>
         <td>요청한 금액</td>
+        <td>상태</td>
     </tr>
     </thead>
     <tbody>
     <tr th:each="request: ${request_list}">
         <td th:text="${request.getFrom().getUsername()}"></td>
         <td th:text="${request.getAmount()}"></td>
-    <td>취소<td>
+        <td th:text="${request.getRequestState()}"></td>
+        <td>
+            <form th:action="@{requested/update}" method="get">
+                <input type="hidden" name="request_id" th:value="${request.getId()}">
+                <button type="submit">수정</button>
+            </form>
+        </td>
+        <td th:if="${request.getRequestState() == T(com.project.fintech.sunpay.model.RequestState).READ}">
+        <form th:action="@{cancel}" method="post">
+            <input type="hidden" name="request_id" th:value="${request.getId()}">
+            <button>취소</button>
+        </form>
+        <td>
+
     </tbody>
     </tr>
 </table>
