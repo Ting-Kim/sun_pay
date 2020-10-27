@@ -8,16 +8,19 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 public class User {
+
     @Id @GeneratedValue
     @Column(name = "user_id")
     private Long id;
 
     private String username;
     private String password;
+    private int amount;
 
     @Builder
-    public User(String username, String password) {
+    public User(String username, String password, int amount) {
         this.username = username;
         this.password = password;
+        this.amount = amount;
     }
 }

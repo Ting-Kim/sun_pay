@@ -28,15 +28,14 @@ public class InitDate {
 
         @Transactional
         public void init() {
-            User user = user("name1");
+            User user = user("name1", 1);
             for (int i = 2; i < 12; i++) {
-                User second = user("name" + i);
+                User second = user("name" + i, i);
                 friend(user, second);
             }
         }
 
         private void friend(User user1, User user2) {
-
             em.persist(Friend.builder()
                     .to(user1)
                     .from(user2)
@@ -47,10 +46,11 @@ public class InitDate {
                     .build());
         }
 
-        private User user(String username) {
+        private User user(String username, int price) {
             User user = User.builder()
                     .username(username)
                     .password("password")
+                    .amount(price * 1000)
                     .build();
             em.persist(user);
             return user;

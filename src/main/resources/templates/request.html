@@ -6,5 +6,29 @@
 </head>
 <body>
 
+<div>요청하는 사람
+    <tr>
+        <td th:text="${to.getUsername()}"></td>
+    </tr>
+</div>
+<br>
+
+<div>요청당하는 사람
+    <tr>
+        <td th:text="${from.getUsername()}"></td>
+    </tr>
+</div>
+<br>
+
+<form th:action="@{/request}" method="post">
+    <input type="hidden" name="from"  th:value="${from.getId()}">
+    <div>
+        <span>요청 금액</span>
+        <input type="text" name="price">
+<!--        요청 메시지 넣으면 어떨까?-->
+        <button type="submit">요청</button>
+
+    </div>
+</form>
 </body>
 </html>
