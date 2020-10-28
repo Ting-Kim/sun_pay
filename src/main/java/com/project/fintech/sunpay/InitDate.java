@@ -38,9 +38,11 @@ public class InitDate {
                     , "mkTKJ5HyW99zSPXcwnR65K2UT6ZUBAVyQxiZaJkd "
                     , "UNTXWPsLaEzDKz5vPvyLHVVudgeAju1Ot9Lje0Bf"
                     , "g5HBcK1XQVeSTtYUeH7RZBNKJOB02B");
+
+            friend(koo, lee);
         }
 
-        private void friend(User user1, User user2, int amount) {
+        private void friend(User user1, User user2) {
             em.persist(Friend.builder()
                     .to(user1)
                     .from(user2)
@@ -50,8 +52,8 @@ public class InitDate {
                     .from(user1)
                     .build());
 
-            em.persist(Request.builder().to(user1).from(user2).amount(amount).build());
-            em.persist(Request.builder().to(user2).from(user1).amount(amount).build());
+            em.persist(Request.builder().to(user1).from(user2).amount(1000).build());
+            em.persist(Request.builder().to(user2).from(user1).amount(1200).build());
         }
 
         public User makeUser(String username, String password, String clientId, String clientSecret, String code) {
