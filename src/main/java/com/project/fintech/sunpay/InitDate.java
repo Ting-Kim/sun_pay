@@ -53,7 +53,7 @@ public class InitDate {
         private User user(String username, int price) {
             User user = User.builder()
                     .username(username)
-                    .password("password")
+                    .password("pass")
                     .amount(price * 1000)
                     .build();
             em.persist(user);

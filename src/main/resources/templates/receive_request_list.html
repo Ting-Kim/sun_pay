@@ -21,7 +21,7 @@
         <div th:if="${receive_request.getRequestState() == T(com.project.fintech.sunpay.model.RequestState).READ}">
             <td>승인(송금)</td>
             <td>
-            <form th:action="@{cancel}" method="post">
+            <form th:action="@{receive_request/refuse}" method="post">
                 <input type="hidden" name="request_id" th:value="${receive_request.getId()}">
                 <button>거절</button>
             </form>

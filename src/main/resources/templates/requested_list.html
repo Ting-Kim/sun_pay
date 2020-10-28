@@ -27,9 +27,9 @@
                 </form>
             </td>
             <td>
-                <form th:action="@{receive_request/refuse}" method="post">
+                <form th:action="@{cancel}" method="post">
                     <input type="hidden" name="request_id" th:value="${request.getId()}">
-                    <button type="submit">거절</button>
+                    <button type="submit">취소</button>
                 </form>
             <td>
         </div>
