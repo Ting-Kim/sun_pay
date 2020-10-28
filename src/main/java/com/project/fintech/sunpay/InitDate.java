@@ -29,11 +29,15 @@ public class InitDate {
 
         @Transactional
         public void init() {
-            User user = user("name1", 1);
-            for (int i = 2; i < 12; i++) {
-                User second = user("name" + i, i);
-                friend(user, second, i * 1000);
-            }
+            User koo = makeUser("구태균", "pass"
+                    , "d6NED6UBY37jD74AldxE3efJ5a0lDQXWr6y7lAVI"
+                    , "9jhDrk9ZQpO3SvaB0ixr96DA4qBQNdUDwwbkKXvB"
+                    , "i6aLFhiLELl35T8BA2g74nxu5A3n2z");
+
+            User lee = makeUser("이은주", "pass"
+                    , "mkTKJ5HyW99zSPXcwnR65K2UT6ZUBAVyQxiZaJkd "
+                    , "UNTXWPsLaEzDKz5vPvyLHVVudgeAju1Ot9Lje0Bf"
+                    , "g5HBcK1XQVeSTtYUeH7RZBNKJOB02B");
         }
 
         private void friend(User user1, User user2, int amount) {
@@ -50,11 +54,13 @@ public class InitDate {
             em.persist(Request.builder().to(user2).from(user1).amount(amount).build());
         }
 
-        private User user(String username, int price) {
+        public User makeUser(String username, String password, String clientId, String clientSecret, String code) {
             User user = User.builder()
                     .username(username)
                     .password("password")
-                    .amount(price * 1000)
+                    .clientId(clientId)
+                    .clientSecret(clientSecret)
+                    .code(code)
                     .build();
             em.persist(user);
             return user;

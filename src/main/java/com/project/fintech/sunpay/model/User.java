@@ -15,12 +15,16 @@ public class User {
 
     private String username;
     private String password;
-    private int amount;
+    private String clientId;
+    private String clientSecret;
+    private String code;
 
     @Builder
-    public User(String username, String password, int amount) {
+    public User(String username, String password, String clientId, String clientSecret, String code) {
         this.username = username;
         this.password = password;
-        this.amount = amount;
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
+        this.code = code;
     }
 }
