@@ -14,4 +14,12 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 
+    public void out(User user, int amount) {
+        user = userRepository.findById(user.getId()).orElseThrow(IllegalArgumentException::new);
+        user.setPoint(user.getPoint() - amount);
+    }
+    public void in(User user, int amount) {
+        user = userRepository.findById(user.getId()).orElseThrow(IllegalArgumentException::new);
+        user.setPoint(user.getPoint() + amount);
+    }
 }
