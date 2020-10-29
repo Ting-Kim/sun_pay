@@ -20,6 +20,8 @@ public class Friend {
     @JoinColumn(name = "form_id")
     private User from;
 
+
+
     @Builder
     public Friend(User to, User from) {
         this.to = to;

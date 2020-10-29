@@ -7,14 +7,14 @@
 <body>
 <div>요청하는 사람
     <tr>
-        <td th:text="${request.getTo().getUsername()}"></td>
+        <td th:text="${request.getTo().getName()}"></td>
     </tr>
 </div>
 <br>
 
 <div>요청당하는 사람
     <tr>
-        <td th:text="${request.getFrom().getUsername()}"></td>
+        <td th:text="${request.getFrom().getName()}"></td>
     </tr>
 </div>
 <br>

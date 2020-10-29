@@ -21,6 +21,8 @@ public class Request {
     @JoinColumn(name = "form_id")
     private User from;
 
+
+
     private int amount;
     @Enumerated(EnumType.STRING)
     private RequestState requestState;

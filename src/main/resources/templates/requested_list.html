@@ -8,14 +8,14 @@
 <table class="table">
     <thead>
     <tr>
-        <td>요청한 사람</td>
-        <td>요청한 금액</td>
+        <td>요청받은 사람</td>
+        <td>요청받은 금액</td>
         <td>상태</td>
     </tr>
     </thead>
     <tbody>
     <tr th:each="request: ${request_list}">
-        <td th:text="${request.getFrom().getUsername()}"></td>
+        <td th:text="${request.getFrom().getName()}"></td>
         <td th:text="${request.getAmount()}"></td>
         <td th:text="${request.getRequestState()}"></td>
 

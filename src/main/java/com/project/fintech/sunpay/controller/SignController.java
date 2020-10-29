@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,9 +23,12 @@ public class SignController {
     }
 
     @PostMapping("sign_in")
-    public String sign_in(User user, HttpSession session){
+    public String sign_in(
+            @RequestParam(name = "username") String username
+            , @RequestParam(name = "password") String password
+            , HttpSession session){
         User findUser = userRepository
-                .findByUsernameAndPassword(user.getUsername(), user.getPassword()).orElseThrow(IllegalArgumentException::new);
+                .findByUsernameAndPassword(username, password).orElseThrow(IllegalArgumentException::new);
         session.setAttribute("user", findUser);
         return "redirect:/request";
     }

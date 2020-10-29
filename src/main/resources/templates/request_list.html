@@ -14,7 +14,7 @@
     <tbody>
     <tr th:each="friend : ${friend_list}">
         <td>
-            <a th:href="@{'/request/'+${friend.getFrom().getId()}}" th:text="${friend.getFrom().getUsername()}"></a>
+            <a th:href="@{'/request/'+${friend.getFrom().getId()}}" th:text="${friend.getFrom().getName()}"></a>
         </td>
     </tr>
     </tbody>
