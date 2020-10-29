@@ -109,8 +109,7 @@ public class InitDate {
                     .to(user2)
                     .from(user1)
                     .build());
+
         }
-
-
     }
 }

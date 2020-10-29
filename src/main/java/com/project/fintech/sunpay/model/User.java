@@ -38,9 +38,11 @@ public class User {
 
     @Builder
     public User(String username, String name, String password, int point, String accessToken, String clientKey, String clientSecret, String seqNum, String useCode, String inputAccountNumber, String outputAccountNumber) {
+
         this.username = username;
         this.name = name;
         this.password = password;
+
         this.point = point;
         this.accessToken = accessToken;
         this.clientKey = clientKey;
