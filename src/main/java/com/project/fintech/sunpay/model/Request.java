@@ -26,6 +26,10 @@ public class Request {
     @JoinColumn(name = "pay_id")
     private Pay pay;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "repay_id")
+    private Repay repay;
+
     private int amount;
     @Lob
     private String requestMsg;

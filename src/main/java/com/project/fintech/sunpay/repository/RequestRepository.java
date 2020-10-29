@@ -1,6 +1,7 @@
 package com.project.fintech.sunpay.repository;
 
 import com.project.fintech.sunpay.model.Request;
+import com.project.fintech.sunpay.model.RequestState;
 import com.project.fintech.sunpay.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,4 +13,5 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findByFrom(User user);
     List<Request> findByFromAndPayIsNotNull(User user);
     List<Request> findByToAndPayIsNotNull(User user);
+    List<Request> findByRequestState(RequestState state);
 }

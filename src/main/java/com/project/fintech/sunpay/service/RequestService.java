@@ -1,9 +1,6 @@
 package com.project.fintech.sunpay.service;
 
-import com.project.fintech.sunpay.model.Pay;
-import com.project.fintech.sunpay.model.Request;
-import com.project.fintech.sunpay.model.RequestState;
-import com.project.fintech.sunpay.model.User;
+import com.project.fintech.sunpay.model.*;
 import com.project.fintech.sunpay.repository.RequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -44,5 +41,19 @@ public class RequestService {
         request.getFrom().setPoint(request.getFrom().getPoint() - request.getAmount());
         request.getTo().setPoint(request.getTo().getPoint() + request.getAmount());
 
+    }
+
+    public Request repay(Long id) {
+        Request request = requestRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        Repay repay = Repay.builder()
+                .price(request.getAmount())
+                .receiveName(request.getFrom().getName())
+                .senderName(request.getTo().getName())
+                .build();
+        request.setRepay(repay);
+        request.setRequestState(RequestState.END);
+        request.getFrom().setPoint(request.getFrom().getPoint() + request.getAmount());
+        request.getTo().setPoint(request.getTo().getPoint() - request.getAmount());
+        return request;
     }
 }

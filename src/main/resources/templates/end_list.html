@@ -2,32 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>입금 내역</title>
+    <title>청산 내역</title>
 </head>
 <body>
 <table class="table">
-    <tr>
-        <th>입금시간</th>
-        <th>입금 금액</th>
-        <th>환급일</th>
-        <th>발신자</th>
-        <th>상태</th>
-    </tr>
-    <tr th:each="request : ${requestList}">
-        <td th:text="${request.getPay().getPayDay()}"></td>
-        <td th:text="${request.getPay().getPrice()}"></td>
-        <td th:text="${request.getPay().getReturnDay()}"></td>
-        <td th:text="${request.getPay().getSenderName()}"></td>
-        <td th:text="${request.getRequestState()}"></td>
-        <td th:if="${request.getRequestState() == T(com.project.fintech.sunpay.model.RequestState).PAYED}">
-            <form th:action="@{repay}" method="get">
-                <input type="hidden" name="request_id" th:value="${request.getId()}">
-                <button type="submit">청산</button>
-            </form>
-        </td>
-    </tr>
+<tr>
+    <th>청산시간</th>
+    <th>청산 금액</th>
+    <th>발신자</th>
+    <th>상태</th>
+</tr>
+<tr th:each="request : ${requestList}">
+    <td th:text="${request.getRepay().getPayDay()}"></td>
+    <td th:text="${request.getRepay().getPrice()}"></td>
+    <td th:text="${request.getRepay().getSenderName()}"></td>
+    <td th:text="${request.getRequestState()}"></td>
+    <td th:if="${request.getRequestState() == T(com.project.fintech.sunpay.model.RequestState).PAYED}">
+        <form th:action="@{repay}" method="get">
+            <input type="hidden" name="request_id" th:value="${request.getId()}">
+            <button type="submit">청산</button>
+        </form>
+    </td>
+</tr>
 </table>
-
 <a class="button" th:href="@{request}">친구 목록</a>
 <a class="button" th:href="@{/requested}">요청한 목록</a>
 <a class="button" th:href="@{/receive_request}">요청받은 목록</a>
