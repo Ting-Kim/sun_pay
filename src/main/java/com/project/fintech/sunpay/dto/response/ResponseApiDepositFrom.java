@@ -1,4 +1,4 @@
-package com.project.fintech.sunpay.dto;
+package com.project.fintech.sunpay.dto.response;
 
 import lombok.Data;
 

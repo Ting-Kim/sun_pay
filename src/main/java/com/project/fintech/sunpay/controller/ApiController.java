@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -122,23 +123,23 @@ public class ApiController {
     @PostMapping("deposit")
     public String deposit(
             @RequestParam("amount")int amount
-            ,@RequestParam("fintech_use_num")String fintech_use_num
+            ,@RequestParam("fintech_use_num") String fintech_use_num
             ,Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null) return "redirect:/sign_in";
+        RequestApiDepositFrom body = new RequestApiDepositFrom(user, fintech_use_num, random, amount);
         Mono<String> responseApiWithdrawFromMono = webClient.mutate()
                 .baseUrl("https://testapi.openbanking.or.kr").build()
                 .post()
                 .uri("/v2.0/transfer/deposit/fin_num")
                 .header("Authorization", "Bearer " + user.getAccessToken())
-                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(new RequestApiDepositFrom(user, fintech_use_num, random, amount))
+                .accept(MediaType.APPLICATION_JSON)
+//                .bodyValue(body)
+                .bodyValue(body)
                 .retrieve()
                 .bodyToMono(String.class);
-        responseApiWithdrawFromMono.subscribe(s -> {
-            System.out.println(s);
-        });
+        System.out.println(responseApiWithdrawFromMono.block());
 //        ResponseApiDepositFrom deposit = responseApiWithdrawFromMono.block();
 //        model.addAttribute("deposit", deposit);
         userService.in(user, amount);

@@ -23,7 +23,7 @@
 
 <form th:action="@{withdraw}" method="post">
     <input type="text" name="amount" placeholder="충전금액">
-    <input type="hidden" name="fintech_use_num">
+    <input type="hidden" name="fintech_use_num" th:value="${balance.getFintech_use_num()}">
     <button type="submit">출금</button>
 </form>
 

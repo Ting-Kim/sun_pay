@@ -23,7 +23,7 @@
 
 <form th:action="@{deposit}" method="post">
     <input type="text" name="amount" placeholder="충전금액">
-    <input type="hidden" name="fintech_use_num">
+    <input type="hidden" name="fintech_use_num" th:value="${balance.getFintech_use_num()}">
     <button type="submit">충전</button>
 </form>
 
