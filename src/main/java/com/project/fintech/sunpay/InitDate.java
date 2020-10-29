@@ -44,7 +44,7 @@ public class InitDate {
                     .clientKey("d6NED6UBY37jD74AldxE3efJ5a0lDQXWr6y7lAVI")
                     .clientSecret("9jhDrk9ZQpO3SvaB0ixr96DA4qBQNdUDwwbkKXvB")
                     .seqNum("1100764619")
-                    .accessToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzY0NjE5Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MTE2NTE0MDQsImp0aSI6IjRmMTQ4ZTkyLTM3NTMtNDFjNy1hODYxLWE0Y2M5MzMzZGUxNiJ9.8mnMai6OTzPIx9wXDleXRrzQu8YkUu9pivFIMA4a7xg")
+                    .accessToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzY0NjE5Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MTE3NzMwNTYsImp0aSI6IjdiYTc1OGM5LWE4NjktNDYwMy04YjU2LWQ5ZDQyMDA0ZDViZCJ9.wB3bkqAnCgMrZf7P3SHD2sfMS_zwOWOuIpDBQ0mSs04")
                     .useCode("T991666290")
                     .inputAccountNumber("9818742028")
                     .outputAccountNumber("0867087549")
