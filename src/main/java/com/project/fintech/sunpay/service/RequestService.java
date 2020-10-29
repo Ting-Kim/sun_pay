@@ -1,5 +1,6 @@
 package com.project.fintech.sunpay.service;
 
+import com.project.fintech.sunpay.model.Pay;
 import com.project.fintech.sunpay.model.Request;
 import com.project.fintech.sunpay.model.RequestState;
 import com.project.fintech.sunpay.repository.RequestRepository;
@@ -24,5 +25,9 @@ public class RequestService {
     public void refuse(Long id) {
         Request request = requestRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         request.setRequestState(RequestState.REFUSE);
+    }
+
+    public void pay(Long id) {
+
     }
 }

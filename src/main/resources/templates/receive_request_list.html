@@ -15,11 +15,16 @@
     </thead>
     <tbody>
     <tr th:each="receive_request : ${receive_request_list}">
-        <td th:text="${receive_request.getTo().getUsername()}"></td>
+        <td th:text="${receive_request.getTo().getName()}"></td>
         <td th:text="${receive_request.getAmount()}"></td>
         <td th:text="${receive_request.getRequestState()}"></td>
         <div th:if="${receive_request.getRequestState() == T(com.project.fintech.sunpay.model.RequestState).READ}">
-            <td>승인(송금)</td>
+            <td>
+            <form th:action="@{pay}" method="get">
+                <input type="hidden" name="request_id" th:value="${receive_request.getId()}">
+                <button>승인(송금)</button>
+            </form>
+            </td>
             <td>
             <form th:action="@{receive_request/refuse}" method="post">
                 <input type="hidden" name="request_id" th:value="${receive_request.getId()}">
