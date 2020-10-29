@@ -4,11 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity @NoArgsConstructor
 @Getter @Setter
@@ -29,22 +27,27 @@ public class Request {
     private Pay pay;
 
     private int amount;
+    @Lob
+    private String requestMsg;
 
     // TODO 1주일안에 요청이 진행되지않으면 마감되는 기능추가
     // 반환하는 날과 마감용 등록날 속성 추가
-    @CreatedDate
     @Column(updatable = false)
-    private LocalDateTime createDate;
-    private LocalDateTime returnDay;
+    private LocalDate createDate;
+
+    private LocalDate returnDay;
 
     @Enumerated(EnumType.STRING)
     private RequestState requestState;
 
     @Builder
-    public Request(User to, User from, int amount) {
+    public Request(User to, User from, int amount, String requestMsg, LocalDate returnDay, RequestState requestState) {
         this.to = to;
         this.from = from;
         this.amount = amount;
-        requestState = RequestState.READ;
+        this.requestMsg = requestMsg;
+        this.returnDay = returnDay;
+        this.requestState = requestState;
+        createDate = LocalDate.now();
     }
 }

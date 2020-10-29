@@ -21,13 +21,13 @@
 <br>
 
 <form th:action="@{/request}" method="post">
-    <input type="hidden" name="from"  th:value="${from.getId()}">
+    <input type="hidden" name="from_id"  th:value="${from.getId()}">
     <div>
-        <span>요청 금액</span>
-        <input type="text" name="price">
-<!--        요청 메시지 넣으면 어떨까?-->
+        <span>요청 수정</span>
+        <input type="text" name="price" placeholder="요청 금액">
+        <input type="text" name="msg" placeholder="요청 매시지">
+        <input type="date" name="return_day" placeholder="반환 날짜">
         <button type="submit">요청</button>
-
     </div>
 </form>
 

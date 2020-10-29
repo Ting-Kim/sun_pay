@@ -3,6 +3,7 @@ package com.project.fintech.sunpay;
 
 import com.project.fintech.sunpay.model.Friend;
 import com.project.fintech.sunpay.model.Request;
+import com.project.fintech.sunpay.model.RequestState;
 import com.project.fintech.sunpay.model.User;
 import lombok.RequiredArgsConstructor;
 
@@ -12,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -89,8 +92,11 @@ public class InitDate {
                     .to(kim)
                     .from(koo)
                     .amount(50)
+                    .requestState(RequestState.READ)
+                    .returnDay(LocalDate.now().plusDays(30))
+                    // TODO 제대로된 메시지 내용으로 교체하기
+                    .requestMsg("메시지 내용")
                     .build());
-
         }
 
         private void processFriend(User user1, User user2) {

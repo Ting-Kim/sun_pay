@@ -7,22 +7,20 @@
 <body>
 <table class="table">
     <tr>
-        <td>출금 계좌</td>
-        <td><span th:text="*{request.getFrom().getAccount().getBank_name()}"></span> / <span
-                th:text="*{request.getFrom().getAccount().getNumber()}"></span></td>
+        <th>잔액</th>
+        <td><span th:text="*{request.getFrom().getPoint()}"></span></td>
     </tr>
     <tr>
-        <td th:text="*{request.getTo().getName()}"></td>
+        <th>결제금액/요청금액</th>
+        <td><span th:text="*{request.getAmount()}"></span></td>
     </tr>
     <tr>
-        <td>보낸금액</td>
-        <td th:text="*{request.getAmount()}"></td>
+        <th>환급일</th>
+        <td><span th:text="*{request.getReturnDay()}"></span></td>
     </tr>
-
     <tr>
-        <td>받는은행/계좌</td>
-        <td><span th:text="*{request.getTo().getAccount().getBank_name()}"></span> / <span
-                th:text="*{request.getTo().getAccount().getNumber()}"></span></td>
+        <th>수령자</th>
+        <td><span th:text="*{request.getTo().getName()}"></span></td>
     </tr>
 </table>
     <form th:action="@{pay}" method="post">

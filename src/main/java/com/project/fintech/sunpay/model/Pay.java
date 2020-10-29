@@ -7,32 +7,26 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity @NoArgsConstructor
 public class Pay {
     @Id @GeneratedValue
     @Column(name = "pay_id")
     private Long id;
-
+    private LocalDateTime payDay;
+    private LocalDate returnDay;
+    private int price;
     private String senderName;
-    private int senderAmount;
-    private String senderBankName;
-    private String senderBankNumber;
-
     private String receiveName;
-    private int receiveAmount;
-    private String receiveBankName;
-    private String receiveBankNumber;
 
     @Builder
-    public Pay(String senderName, int senderAmount, String senderBankName, String senderBankNumber, String receiveName, int receiveAmount, String receiveBankName, String receiveBankNumber) {
+    public Pay(LocalDate returnDay, int price, String senderName, String receiveName) {
+        payDay = LocalDateTime.now();
+        this.returnDay = returnDay;
+        this.price = price;
         this.senderName = senderName;
-        this.senderAmount = senderAmount;
-        this.senderBankName = senderBankName;
-        this.senderBankNumber = senderBankNumber;
         this.receiveName = receiveName;
-        this.receiveAmount = receiveAmount;
-        this.receiveBankName = receiveBankName;
-        this.receiveBankNumber = receiveBankNumber;
     }
 }

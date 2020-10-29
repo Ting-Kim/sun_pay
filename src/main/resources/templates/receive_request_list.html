@@ -5,11 +5,14 @@
     <title>요청받은 목록</title>
 </head>
 <body>
+<h1>요청한 정보목록</h1>
 <table class="table">
     <thead>
     <tr>
-        <td>요청한 사람</td>
-        <td>요청한 금액</td>
+        <td>사람</td>
+        <td>금액</td>
+        <td>반환날짜</td>
+        <td>메시지</td>
         <td>상태</td>
     </tr>
     </thead>
@@ -17,6 +20,8 @@
     <tr th:each="receive_request : ${receive_request_list}">
         <td th:text="${receive_request.getTo().getName()}"></td>
         <td th:text="${receive_request.getAmount()}"></td>
+        <td th:text="${receive_request.getReturnDay()}"></td>
+        <td th:text="${receive_request.getRequestMsg()}"></td>
         <td th:text="${receive_request.getRequestState()}"></td>
         <div th:if="${receive_request.getRequestState() == T(com.project.fintech.sunpay.model.RequestState).READ}">
             <td>

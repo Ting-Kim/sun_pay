@@ -20,11 +20,12 @@ import javax.servlet.http.HttpSession;
 public class PayController {
     private final RequestRepository requestRepository;
     private final RequestService requestService;
+
     @GetMapping("pay")
     public String pay(@RequestParam("request_id") Long id
-            , Model model, HttpSession session){
+            , Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if (user == null)return "redirect:/sign_in";
+        if (user == null) return "redirect:/sign_in";
         Request request = requestRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         model.addAttribute("request", request);
         return "pay_form";
@@ -32,11 +33,10 @@ public class PayController {
 
     @PostMapping("pay")
     public String pay(@RequestParam("request_id") Long id
-    , HttpSession session){
+            , HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if (user == null)return "redirect:/sign_in";
+        if (user == null) return "redirect:/sign_in";
         requestService.pay(id);
-
         return "redirect:/request";
     }
 
