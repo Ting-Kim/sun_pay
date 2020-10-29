@@ -32,6 +32,7 @@ public class InitDate {
         private EntityManager em;
         private String[] names = {"구태균", "김태호", "이은주"};
         private int[] pointList = {1000, 2000, 3000};
+        private int[] payList = {10, 20, 30, 40, 50};
 
         @Transactional
         public void init() {
@@ -88,15 +89,19 @@ public class InitDate {
         }
 
         private void processRequest(User koo, User kim) {
-            em.persist(Request.builder()
-                    .to(kim)
-                    .from(koo)
-                    .amount(50)
-                    .requestState(RequestState.READ)
-                    .returnDay(LocalDate.now().plusDays(30))
-                    // TODO 제대로된 메시지 내용으로 교체하기
-                    .requestMsg("메시지 내용")
-                    .build());
+            for (int i = 0; i < payList.length; i++) {
+                em.persist(Request.builder()
+                        .to(kim)
+                        .from(koo)
+                        .amount(payList[i])
+                        .requestState(RequestState.READ)
+                        .returnDay(LocalDate.now().plusDays(30))
+                        // TODO 제대로된 메시지 내용으로 교체하기
+                        .requestMsg("메시지 내용")
+                        .build());
+            }
+
+
         }
 
         private void processFriend(User user1, User user2) {

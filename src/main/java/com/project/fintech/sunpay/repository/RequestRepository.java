@@ -10,4 +10,6 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findByTo(User to);
 
     List<Request> findByFrom(User user);
+    List<Request> findByFromAndPayIsNotNull(User user);
+    List<Request> findByToAndPayIsNotNull(User user);
 }

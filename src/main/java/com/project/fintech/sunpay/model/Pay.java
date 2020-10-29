@@ -1,6 +1,7 @@
 package com.project.fintech.sunpay.model;
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity @NoArgsConstructor
+@Getter
 public class Pay {
     @Id @GeneratedValue
     @Column(name = "pay_id")
