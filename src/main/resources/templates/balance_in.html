@@ -3,23 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>잔액</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/request_form.css}" />
 </head>
 <body>
-<table>
-    <tr>
-        <td>상품명</td>
-        <td>출금가능 금액</td>
-        <td>계좌 잔액</td>
-        <td>은행명</td>
-    </tr>
-    <tr>
-        <td th:text="${balance.getProduct_name()}"></td>
-        <td th:text="${balance.getAvailable_amt()}"></td>
-        <td th:text="${balance.getBalance_amt()}"></td>
-        <td th:text="${balance.getBank_name()}"></td>
+<div class="request_form">
+    <div>출금 한도 :
+        <span style="font-weight: 700;">
+            <span th:text="${balance.getAvailable_amt()}" >
+            </span>
+        </span>
+    </div>
+    <br>
 
-    </tr>
-</table>
+    <div>계좌 잔액 :
+        <span style="font-weight: 700;">
+            <span th:text="${balance.getBalance_amt()}"></span>
+        </span>
+    </div>
+    <br>
+
+    <div>은행명 :
+        <span style="font-weight: 700;">
+            <span th:text="${balance.getBank_name()}"></span>
+        </span>
+    </div>
+<!--<table>-->
+<!--    <tr>-->
+<!--        <td>상품명</td>-->
+<!--        <td>출금가능 금액</td>-->
+<!--        <td>계좌 잔액</td>-->
+<!--        <td>은행명</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--        <td th:text="${balance.getProduct_name()}"></td>-->
+<!--        <td th:text="${balance.getAvailable_amt()}"></td>-->
+<!--        <td th:text="${balance.getBalance_amt()}"></td>-->
+<!--        <td th:text="${balance.getBank_name()}"></td>-->
+
+<!--    </tr>-->
+<!--</table>-->
 
 <form th:action="@{deposit}" method="post">
     <input type="text" name="amount" placeholder="충전금액">
